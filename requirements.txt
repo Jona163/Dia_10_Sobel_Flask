@@ -1,0 +1,25 @@
+# Autor: Jonathan Hernández
+# Fecha: 11 Septiembre 2024
+# Descripción: Código para procesamiento de imagenes con Sobel.
+# GitHub: https://github.com/Jona163
+
+beautifulsoup4==4.12.3
+certifi==2024.2.2
+charset-normalizer==3.3.2
+geographiclib==2.0
+geopy==2.4.1
+google==3.0.0
+googlemaps==4.10.0
+idna==3.7
+maps==5.1.1
+Panda3D==1.10.14
+panda3d-gltf==1.2.0
+panda3d-simplepbr==0.12.0
+pillow==10.4.0
+pyperclip==1.9.0
+requests==2.32.2
+screeninfo==0.8.1
+soupsieve==2.5
+typing_extensions==4.12.2
+urllib3==2.2.1
+ursina==7.0.0
