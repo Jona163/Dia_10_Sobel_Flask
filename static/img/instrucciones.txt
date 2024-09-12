@@ -1,1 +1,5 @@
+# Autor: Jonathan Hernández
+# Fecha: 11 Septiembre 2024
+# Descripción: Código para procesamiento de imagenes con Sobel.
+# GitHub: https://github.com/Jona163
 En esta carpeta estaran las imagenes que se buscara hacer con sobel , en la escala de grises.
