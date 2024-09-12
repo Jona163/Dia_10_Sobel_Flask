@@ -32,3 +32,36 @@ def aplicar_sobel(imagen_path):
         sobel_y = cv2.Sobel(imagen, cv2.CV_64F, 0, 1, ksize=3)
         magnitud = np.sqrt(sobel_x**2 + sobel_y**2)
         magnitud = np.uint8(255 * magnitud / np.max(magnitud))
+
+        
+        # Guardar la imagen resultante
+        resultado_path = os.path.join(app.config['UPLOAD_FOLDER'], 'sobel_resultado.png')
+        cv2.imwrite(resultado_path, magnitud)
+        return 'img/sobel_resultado.png'  # Asegúrate de que esta ruta es correcta
+    except Exception as e:
+        print(f"Error al aplicar Sobel: {e}")
+        return None
+
+def txt_a_imagen(txt_path):
+    """ Convierte un archivo de texto de matriz a una imagen y aplica el filtro Sobel """
+    try:
+        # Leer la matriz desde el archivo de texto
+        matriz = np.loadtxt(txt_path, delimiter=',')
+        
+        # Normalizar la matriz para que sea una imagen
+        matriz_normalizada = np.uint8(255 * matriz / np.max(matriz))
+        
+        # Aplicar el filtro Sobel
+        sobel_x = cv2.Sobel(matriz_normalizada, cv2.CV_64F, 1, 0, ksize=3)
+        sobel_y = cv2.Sobel(matriz_normalizada, cv2.CV_64F, 0, 1, ksize=3)
+        magnitud = np.sqrt(sobel_x**2 + sobel_y**2)
+        magnitud = np.uint8(255 * magnitud / np.max(magnitud))
+        
+        # Guardar la imagen resultante
+        resultado_path = os.path.join(app.config['UPLOAD_FOLDER'], 'sobel_resultado.png')
+        cv2.imwrite(resultado_path, magnitud)
+        return 'img/sobel_resultado.png'
+    except Exception as e:
+        print(f"Error al convertir TXT a imagen y aplicar Sobel: {e}")
+        return None
+
