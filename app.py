@@ -90,3 +90,22 @@ def upload_file():
     file_content = None
     error_message = None
     result_type = None
+
+
+    if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        result_image_path = aplicar_sobel(file_path)
+        if result_image_path is None:
+            error_message = "La imagen está corrupta o no es válida."
+        result_type = 'imagen'
+    elif filename.lower().endswith('.txt'):
+        result_image_path = txt_a_imagen(file_path)
+        if result_image_path is None:
+            error_message = "El archivo .txt no pudo ser procesado."
+        with open(file_path, 'r') as f:
+            file_content = f.read()
+        result_type = 'txt'
+
+    return render_template('index.html', original_file=filename, result_image=result_image_path, file_content=file_content, result_type=result_type, error_message=error_message)
+
+if __name__ == '__main__':
+    app.run(debug=True)
