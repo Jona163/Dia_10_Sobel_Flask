@@ -2,6 +2,7 @@
 # Fecha: 11 Septiembre 2024
 # Descripción: Código para procesamiento de imagenes con Sobel.
 # GitHub: https://github.com/Jona163
+# Fase de desarrollo versión 1.0.1
 
 beautifulsoup4==4.12.3
 certifi==2024.2.2
