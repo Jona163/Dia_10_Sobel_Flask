@@ -32,7 +32,6 @@ def aplicar_sobel(imagen_path):
         sobel_y = cv2.Sobel(imagen, cv2.CV_64F, 0, 1, ksize=3)
         magnitud = np.sqrt(sobel_x**2 + sobel_y**2)
         magnitud = np.uint8(255 * magnitud / np.max(magnitud))
-
         
         # Guardar la imagen resultante
         resultado_path = os.path.join(app.config['UPLOAD_FOLDER'], 'sobel_resultado.png')
@@ -65,7 +64,6 @@ def txt_a_imagen(txt_path):
         print(f"Error al convertir TXT a imagen y aplicar Sobel: {e}")
         return None
 
-
 @app.route('/')
 def index():
     """ Página principal con el formulario para subir imágenes o archivos .txt """
@@ -90,7 +88,6 @@ def upload_file():
     file_content = None
     error_message = None
     result_type = None
-
 
     if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
         result_image_path = aplicar_sobel(file_path)
