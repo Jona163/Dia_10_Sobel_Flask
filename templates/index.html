@@ -2,3 +2,59 @@
 # Fecha: 11 Septiembre 2024
 # Descripción: Código para procesamiento de imagenes con Sobel.
 # GitHub: https://github.com/Jona163
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro Sobel - Procesamiento de Imágenes y Matrices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Filtro Sobel y Conversión de Matrices a Imágenes</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".png,.jpg,.jpeg,.txt" required>
+            <button type="submit">Subir y Procesar</button>
+        </form>
+
+        {% if error_message %}
+        <div class="error-message">
+            <h2>Error</h2>
+            <p>{{ error_message }}</p>
+        </div>
+        {% endif %}
+
+        {% if original_file %}
+        <div class="file-view">
+            <h2>Archivo Subido</h2>
+            {% if result_type == 'imagen' %}
+            <div class="images">
+                <div class="image-container">
+                    <h3>Imagen Original</h3>
+                    <img src="{{ url_for('static', filename='img/sobel_resultado.png') }}" alt="Imagen Procesada">
+                </div>
+            </div>
+            {% elif result_type == 'txt' %}
+            <div class="text-container">
+                <h3>Contenido del Archivo .txt</h3>
+                <pre>{{ file_content }}</pre>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if result_image %}
+        <div class="images">
+            <div class="image-container">
+                <h3>Resultado Procesado</h3>
+                <img src="{{ url_for('static', filename=result_image) }}" alt="Imagen Procesada">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
