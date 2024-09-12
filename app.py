@@ -65,3 +65,28 @@ def txt_a_imagen(txt_path):
         print(f"Error al convertir TXT a imagen y aplicar Sobel: {e}")
         return None
 
+
+@app.route('/')
+def index():
+    """ Página principal con el formulario para subir imágenes o archivos .txt """
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    """ Maneja la subida de imágenes y archivos .txt """
+    if 'file' not in request.files:
+        return redirect(request.url)
+
+    file = request.files['file']
+    
+    if file.filename == '' or not allowed_file(file.filename):
+        return redirect(request.url)
+    
+    filename = secure_filename(file.filename)
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(file_path)
+
+    result_image_path = None
+    file_content = None
+    error_message = None
+    result_type = None
